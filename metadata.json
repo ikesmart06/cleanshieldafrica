@@ -1,0 +1,6 @@
+{
+  "name": "CleanShield",
+  "description": "Site vitrine et commande pour CleanShield, complément alimentaire liquide pour votre bien-être au quotidien.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
