@@ -8,6 +8,8 @@
   <meta name="description"
         content="CleanShield — complément alimentaire liquide pour accompagner votre bien-être quotidien.">
   <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <link rel="alternate icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -341,20 +343,203 @@
       position: relative;
     }
 
+    /* =====================================================
+       ANIMATIONS & INTERACTIVE MOTION
+       ===================================================== */
+    @keyframes pageEntranceFade {
+      0% { opacity: 0; transform: translateY(18px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popInBounce {
+      0% { opacity: 0; transform: scale(0.85) translateY(24px); }
+      70% { opacity: 1; transform: scale(1.02) translateY(-4px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes gentleFloat {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    @keyframes shinePass {
+      0% { transform: translateX(-150%) rotate(45deg); }
+      30%, 100% { transform: translateX(250%) rotate(45deg); }
+    }
+
+    .hero-content {
+      animation: pageEntranceFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .product-visual-wrapper {
+      animation: popInBounce 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+      perspective: 1200px;
+    }
+
     .product-visual-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
+      background: radial-gradient(circle at 50% 48%, rgba(245, 243, 255, 0.95) 0%, rgba(239, 246, 255, 0.85) 45%, rgba(248, 250, 252, 0.95) 80%, #ffffff 100%);
+      border: 1px solid rgba(124, 58, 237, 0.15);
       border-radius: var(--radius-2xl);
-      padding: 30px 24px;
-      box-shadow: var(--shadow-xl);
+      padding: 26px 20px 20px;
+      box-shadow: 0 20px 40px -15px rgba(109, 40, 217, 0.12), 0 0 0 1px rgba(0, 82, 255, 0.05);
       position: relative;
       z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 480px;
+      min-height: 500px;
       overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    .product-visual-card:hover {
+      box-shadow: 0 28px 50px -15px rgba(109, 40, 217, 0.22), 0 0 0 1px rgba(124, 58, 237, 0.2);
+    }
+
+    /* Interactive 3D Rotation on image hover */
+    .product-real-img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      position: relative;
+      z-index: 8;
+      filter: drop-shadow(0 18px 24px rgba(76, 29, 149, 0.18));
+      transform-origin: center center;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.5s ease;
+      cursor: grab;
+      animation: gentleFloat 6s ease-in-out infinite;
+    }
+
+    .product-real-img:hover {
+      /* 3D tilt & dynamic rotation angle on hover */
+      transform: translateY(-14px) scale(1.06) rotate(-5deg) rotateY(15deg);
+      filter: drop-shadow(-8px 28px 36px rgba(124, 58, 237, 0.35));
+    }
+
+    .product-real-img:active {
+      transform: translateY(-8px) scale(1.03) rotate(5deg) rotateY(-12deg);
+      cursor: grabbing;
+    }
+
+    /* About section image with interactive 3D rotation */
+    .about-real-img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      position: relative;
+      z-index: 8;
+      filter: drop-shadow(0 16px 24px rgba(16, 185, 129, 0.16));
+      transform-origin: center center;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.5s ease;
+      cursor: grab;
+      animation: gentleFloat 7s ease-in-out infinite 1s;
+    }
+
+    .about-real-img:hover {
+      transform: translateY(-12px) scale(1.07) rotate(6deg) rotateY(-14deg);
+      filter: drop-shadow(8px 26px 36px rgba(16, 185, 129, 0.32));
+    }
+
+    .about-real-img:active {
+      transform: translateY(-6px) scale(1.02) rotate(-4deg) rotateY(10deg);
+      cursor: grabbing;
+    }
+
+    /* Order mini image playful hover wiggle */
+    .order-mini-img {
+      width: 52px;
+      height: 68px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 10px rgba(109, 40, 217, 0.2));
+      position: relative;
+      z-index: 2;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .order-product-mini:hover .order-mini-img {
+      transform: scale(1.15) rotate(-8deg);
+    }
+
+    /* Creative background elements behind hero bottle */
+    .hero-bg-stage {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-stage-aura-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(59, 130, 246, 0.14) 40%, rgba(16, 185, 129, 0.06) 65%, transparent 80%);
+      filter: blur(20px);
+      animation: pulseAura 6s ease-in-out infinite alternate;
+    }
+
+    .hero-stage-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px dashed rgba(139, 92, 246, 0.25);
+      pointer-events: none;
+    }
+
+    .ring-1 {
+      width: 260px;
+      height: 260px;
+      animation: spinSlow 30s linear infinite;
+    }
+
+    .ring-2 {
+      width: 340px;
+      height: 340px;
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      animation: spinSlowReverse 40s linear infinite;
+    }
+
+    .hero-stage-bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(196, 181, 253, 0.4));
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .bubble-1 { width: 18px; height: 18px; top: 22%; left: 12%; animation: floatBubble 5s ease-in-out infinite alternate; }
+    .bubble-2 { width: 12px; height: 12px; top: 38%; right: 14%; animation: floatBubble 4s ease-in-out infinite 1s alternate; }
+    .bubble-3 { width: 22px; height: 22px; bottom: 28%; left: 10%; animation: floatBubble 6s ease-in-out infinite 0.5s alternate; }
+    .bubble-4 { width: 14px; height: 14px; bottom: 22%; right: 18%; animation: floatBubble 4.5s ease-in-out infinite 1.5s alternate; }
+
+    @keyframes pulseAura {
+      0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.75; }
+      100% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+    }
+
+    @keyframes spinSlow {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes spinSlowReverse {
+      from { transform: translate(-50%, -50%) rotate(360deg); }
+      to { transform: translate(-50%, -50%) rotate(0deg); }
+    }
+
+    @keyframes floatBubble {
+      0% { transform: translateY(0px) scale(1); }
+      100% { transform: translateY(-10px) scale(1.06); }
     }
 
     .visual-top-bar {
@@ -362,9 +547,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+      position: relative;
+      z-index: 10;
     }
 
     .window-dots {
@@ -385,110 +572,92 @@
     .visual-badge-spec {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 11px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      background: var(--bg-subtle);
-      padding: 3px 10px;
+      font-weight: 700;
+      color: var(--brand-primary);
+      background: rgba(255, 255, 255, 0.85);
+      padding: 4px 10px;
       border-radius: 6px;
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     }
 
     .product-image-container {
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 100%;
       max-width: 380px;
-      padding: 10px;
+      padding: 10px 10px 18px;
+      z-index: 5;
     }
 
-    .product-real-img {
-      width: 100%;
-      max-height: 420px;
-      object-fit: contain;
-      border-radius: var(--radius-xl);
-      filter: drop-shadow(0 16px 24px rgba(17, 24, 39, 0.12));
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
-    }
-
-    .product-real-img:hover {
-      transform: translateY(-6px) scale(1.02);
-      filter: drop-shadow(0 22px 30px rgba(0, 82, 255, 0.18));
-    }
-
-    .product-floating-tag {
+    /* Floating wellness chips on hero stage */
+    .hero-floating-chip {
       position: absolute;
-      bottom: 16px;
-      right: 12px;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow-md);
-      padding: 8px 14px;
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      animation: floatTag 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatTag {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-4px); }
-    }
-
-    .tag-icon {
-      font-size: 20px;
-    }
-
-    .tag-info strong {
-      display: block;
-      font-size: 13px;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      box-shadow: 0 10px 24px -6px rgba(109, 40, 217, 0.15);
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11.5px;
+      font-weight: 700;
       color: var(--text-heading);
-      line-height: 1.2;
-    }
-
-    .tag-info small {
-      font-size: 11px;
-      color: var(--brand-primary);
-      font-weight: 600;
-    }
-
-    /* About section image styles */
-    .about-image-wrapper {
-      position: relative;
-      width: 100%;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      gap: 6px;
+      z-index: 12;
+      pointer-events: none;
     }
 
-    .about-real-img {
-      width: 100%;
-      max-height: 380px;
-      object-fit: contain;
-      border-radius: var(--radius-xl);
-      filter: drop-shadow(0 14px 20px rgba(17, 24, 39, 0.1));
-      transition: transform 0.3s ease;
+    .hero-chip-left {
+      top: 18px;
+      left: -6px;
+      animation: floatChip1 3.5s ease-in-out infinite alternate;
     }
 
-    .about-real-img:hover {
-      transform: scale(1.03);
+    .hero-chip-right {
+      top: 60px;
+      right: -8px;
+      animation: floatChip2 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatChip1 {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-6px); }
+    }
+
+    @keyframes floatChip2 {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(6px); }
+    }
+
+    .about-pedestal-base {
+      width: 180px;
+      height: 20px;
+      margin-top: -10px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.3) 0%, rgba(124, 58, 237, 0.18) 40%, rgba(0, 0, 0, 0.06) 65%, transparent 80%);
+      filter: blur(3px);
+      z-index: 4;
+      animation: pulsePedestal 3.2s ease-in-out infinite alternate;
     }
 
     .about-guarantee-badge {
       margin-top: 18px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 10px 18px;
       border-radius: var(--radius-full);
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.14);
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      position: relative;
+      z-index: 10;
     }
 
     .guarantee-icon {
@@ -840,18 +1009,23 @@
       margin-top: 24px;
       display: flex;
       align-items: center;
-      gap: 14px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      padding: 12px 16px;
-      border-radius: var(--radius-lg);
+      gap: 16px;
+      background: radial-gradient(circle at 20% 50%, rgba(245, 243, 255, 0.95) 0%, rgba(239, 246, 255, 0.85) 50%, rgba(248, 250, 252, 0.95) 100%);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      padding: 12px 18px;
+      border-radius: var(--radius-xl);
+      box-shadow: 0 10px 20px -6px rgba(109, 40, 217, 0.08);
+      position: relative;
+      overflow: hidden;
     }
 
     .order-mini-img {
-      width: 48px;
-      height: 64px;
+      width: 52px;
+      height: 68px;
       object-fit: contain;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+      filter: drop-shadow(0 6px 10px rgba(109, 40, 217, 0.2));
+      position: relative;
+      z-index: 2;
     }
 
     .perk-item {
@@ -1311,6 +1485,17 @@
 
     <div class="product-visual-card">
 
+      <!-- Background Creative Ambient Lighting Stage -->
+      <div class="hero-bg-stage" aria-hidden="true">
+        <div class="hero-stage-aura-glow"></div>
+        <div class="hero-stage-ring ring-1"></div>
+        <div class="hero-stage-ring ring-2"></div>
+        <div class="hero-stage-bubble bubble-1"></div>
+        <div class="hero-stage-bubble bubble-2"></div>
+        <div class="hero-stage-bubble bubble-3"></div>
+        <div class="hero-stage-bubble bubble-4"></div>
+      </div>
+
       <div class="visual-top-bar">
         <div class="window-dots">
           <div class="window-dot dot-red"></div>
@@ -1321,8 +1506,16 @@
       </div>
 
       <div class="product-image-container">
+        <!-- Floating Wellness Chips in Background Stage -->
+        <div class="hero-floating-chip hero-chip-left">
+          <span>💧</span> Formule Liquide Pure
+        </div>
+        <div class="hero-floating-chip hero-chip-right">
+          <span>⚡</span> Équilibre & Vitalité
+        </div>
+
         <img
-          src="/images/cleanshield-hero.jpg"
+          src="/images/image2.png"
           alt="Bouteille Authentique CleanShield Liquid Supplement"
           class="product-real-img"
           referrerPolicy="no-referrer"
@@ -1330,6 +1523,9 @@
           width="320"
           height="420"
         />
+
+        <!-- Studio Light Pedestal Base -->
+        <div class="bottle-pedestal-base" aria-hidden="true"></div>
 
         <div class="product-floating-tag">
           <span class="tag-icon">🛡️</span>
@@ -1356,9 +1552,23 @@
 
     <div class="about-preview-card" id="about-visual">
 
+      <!-- Creative Vitality Stage Background -->
+      <div class="about-bg-stage" aria-hidden="true">
+        <div class="about-stage-glow"></div>
+        <div class="about-stage-grid"></div>
+      </div>
+
       <div class="about-image-wrapper">
+        <!-- Floating Ambient Chips -->
+        <div class="about-floating-badge-top">
+          <span>🌿</span> 100% Naturel & Actif
+        </div>
+        <div class="about-floating-badge-bottom">
+          <span>🛡️</span> Protection Cellulaire
+        </div>
+
         <img
-          src="/images/cleanshield-showcase.jpg"
+          src="/images/image1.png"
           alt="Flacon CleanShield A Refreshing Health Drink"
           class="about-real-img"
           referrerPolicy="no-referrer"
@@ -1366,6 +1576,9 @@
           width="320"
           height="380"
         />
+
+        <!-- Studio Light Pedestal Base -->
+        <div class="about-pedestal-base" aria-hidden="true"></div>
 
         <div class="about-guarantee-badge">
           <div class="guarantee-icon">✓</div>
@@ -1656,7 +1869,7 @@
 
       <div class="order-product-mini" id="order-product-badge">
         <img
-          src="/images/cleanshield-hero.jpg"
+          src="/images/image1.png"
           alt="Bouteille CleanShield Originale"
           class="order-mini-img"
           referrerPolicy="no-referrer"
@@ -2012,6 +2225,33 @@ Merci de me confirmer le tarif, la disponibilité et les délais de livraison.`;
       window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + defaultText, "_blank");
     });
   }
+
+  /* 3D DYNAMIC BOTTLE ROTATION & TILT ON CURSOR MOVE */
+  function setupBottle3DTilt(elementId) {
+    const bottle = document.getElementById(elementId);
+    if (!bottle) return;
+    const parentCard = bottle.closest(".product-visual-card") || bottle.closest(".about-preview-card");
+    if (!parentCard) return;
+
+    parentCard.addEventListener("mousemove", (e) => {
+      const rect = parentCard.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      const rotateY = (x / (rect.width / 2)) * 14;
+      const rotateX = -(y / (rect.height / 2)) * 12;
+      const rotateZ = (x / (rect.width / 2)) * -4;
+
+      bottle.style.transform = `perspective(800px) translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(1.05)`;
+    });
+
+    parentCard.addEventListener("mouseleave", () => {
+      bottle.style.transform = "";
+    });
+  }
+
+  setupBottle3DTilt("hero-cleanshield-bottle");
+  setupBottle3DTilt("about-cleanshield-bottle");
 </script>
 
 </body>
