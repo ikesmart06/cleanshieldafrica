@@ -6,6 +6,8 @@ import {
 import { SITE, telLink, waLink } from './config';
 import { T, type Lang } from './i18n';
 
+const B = import.meta.env.BASE_URL;
+
 /* ---------- helpers ---------- */
 
 function useReveal() {
@@ -124,7 +126,7 @@ export default function App() {
       <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/85 shadow-[0_1px_0_rgba(46,16,101,.08),0_8px_24px_-12px_rgba(46,16,101,.18)] backdrop-blur-xl' : 'bg-cream'}`}>
         <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:h-[72px] sm:px-6">
           <a href="#top" className="flex shrink-0 items-center gap-2.5" aria-label="CleanShield">
-            <img src="/logo.svg" alt="" width={40} height={40} className="size-9 sm:size-10" />
+            <img src={`${B}logo.svg`} alt="" width={40} height={40} className="size-9 sm:size-10" />
             <span className="font-display text-xl font-extrabold tracking-tight text-violet-950">
               Clean<span className="text-violet-600">Shield</span>
             </span>
@@ -209,7 +211,7 @@ export default function App() {
               <div className="absolute size-[300px] rounded-full bg-gold-300/25 blur-3xl sm:size-[380px]" aria-hidden="true" />
               <div className="absolute size-[280px] rounded-full border border-white/15 sm:size-[380px]" aria-hidden="true" />
               <div className="absolute size-[360px] rounded-full border border-dashed border-white/10 sm:size-[480px] spin-slow" aria-hidden="true" />
-              <img src="/img/bottle-hero.webp" alt="CleanShield INT Liquid Supplement" width={341} height={1106}
+              <img src={`${B}img/bottle-hero.webp`} alt="CleanShield INT Liquid Supplement" width={341} height={1106}
                 className="float relative h-[400px] w-auto drop-shadow-[0_40px_40px_rgba(15,4,40,.55)] sm:h-[500px]" />
               <div className="chip left-0 top-14 sm:left-2"><Droplets className="size-4 text-sky-500" />{t.hero.chip1}</div>
               <div className="chip right-0 top-1/2 [animation-delay:-2s] sm:-right-2"><Zap className="size-4 text-gold-500" />{t.hero.chip2}</div>
@@ -254,8 +256,8 @@ export default function App() {
               <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-violet-100 via-white to-gold-100/60 p-8 ring-1 ring-violet-200/70 sm:p-12">
                 <div className="dots absolute inset-0 opacity-50" aria-hidden="true" />
                 <div className="relative flex items-end justify-center gap-6 sm:gap-10">
-                  <img src="/img/bottle-slim.png" alt="CleanShield 8 oz" width={110} height={424} className="h-56 w-auto drop-shadow-xl sm:h-72" loading="lazy" />
-                  <img src="/img/bottle-tall.png" alt="CleanShield 32 oz" width={112} height={335} className="h-48 w-auto drop-shadow-xl sm:h-60" loading="lazy" />
+                  <img src={`${B}img/bottle-slim.png`} alt="CleanShield 8 oz" width={110} height={424} className="h-56 w-auto drop-shadow-xl sm:h-72" loading="lazy" />
+                  <img src={`${B}img/bottle-tall.png`} alt="CleanShield 32 oz" width={112} height={335} className="h-48 w-auto drop-shadow-xl sm:h-60" loading="lazy" />
                 </div>
                 <div className="relative mt-8 grid grid-cols-2 gap-3 text-sm">
                   <div className="rounded-2xl bg-white/80 p-4 ring-1 ring-violet-100">
@@ -356,7 +358,7 @@ export default function App() {
                   {best && <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gold-400 px-3 py-1 text-xs font-bold uppercase tracking-wide text-violet-950">⭐ {t.packs.best}</span>}
                   <div className="flex h-24 items-end gap-1">
                     {Array.from({ length: Math.min(p.q, 4) }).map((_, k) => (
-                      <img key={k} src="/img/bottle-slim.png" alt="" className="h-20 w-auto drop-shadow-md" style={{ marginLeft: k ? -14 : 0, height: 80 - k * 4 }} loading="lazy" />
+                      <img key={k} src={`${B}img/bottle-slim.png`} alt="" className="h-20 w-auto drop-shadow-md" style={{ marginLeft: k ? -14 : 0, height: 80 - k * 4 }} loading="lazy" />
                     ))}
                     {p.q > 4 && <span className={`ml-2 font-display text-lg font-bold ${best ? 'text-violet-700' : 'text-gold-300'}`}>×2</span>}
                   </div>
@@ -452,8 +454,8 @@ export default function App() {
         {/* FINAL CTA */}
         <Section className="py-16 sm:py-24">
           <div data-reveal className="hero-bg relative overflow-hidden rounded-[2rem] px-6 py-14 text-center sm:px-12 sm:py-20">
-            <img src="/img/bottle-hero.webp" alt="" className="pointer-events-none absolute -bottom-24 -right-6 hidden h-[420px] rotate-12 opacity-90 md:block" loading="lazy" />
-            <img src="/img/bottle-hero.webp" alt="" className="pointer-events-none absolute -bottom-28 -left-4 hidden h-[360px] -rotate-12 opacity-60 lg:block" loading="lazy" />
+            <img src={`${B}img/bottle-hero.webp`} alt="" className="pointer-events-none absolute -bottom-24 -right-6 hidden h-[420px] rotate-12 opacity-90 md:block" loading="lazy" />
+            <img src={`${B}img/bottle-hero.webp`} alt="" className="pointer-events-none absolute -bottom-28 -left-4 hidden h-[360px] -rotate-12 opacity-60 lg:block" loading="lazy" />
             <div className="relative mx-auto max-w-2xl">
               <h2 className="font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">{t.final.title}</h2>
               <p className="mt-4 text-lg text-violet-100/85">{t.final.sub}</p>
@@ -471,7 +473,7 @@ export default function App() {
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
-              <img src="/logo.svg" alt="" width={40} height={40} className="size-10" />
+              <img src={`${B}logo.svg`} alt="" width={40} height={40} className="size-10" />
               <span className="font-display text-xl font-extrabold text-white">Clean<span className="text-gold-300">Shield</span></span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-violet-200/75">{t.footer.tag}</p>
