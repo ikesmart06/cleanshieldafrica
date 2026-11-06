@@ -1,1 +1,98 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-cream: #faf8fc;
+  --color-ink: #1b1530;
+
+  --color-violet-50: #f6f2fd;
+  --color-violet-100: #ede5fb;
+  --color-violet-200: #dccdf6;
+  --color-violet-300: #c3a8ef;
+  --color-violet-400: #a47be4;
+  --color-violet-500: #8a55d6;
+  --color-violet-600: #7439c4;
+  --color-violet-700: #6229a8;
+  --color-violet-800: #4f2189;
+  --color-violet-900: #3d1a6b;
+  --color-violet-950: #230d45;
+
+  --color-gold-100: #fdf3d4;
+  --color-gold-300: #fcd770;
+  --color-gold-400: #f8c63d;
+  --color-gold-500: #e8ab12;
+  --color-gold-700: #a26a07;
+  --color-gold-800: #82520b;
+}
+
+html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+body { background: var(--color-cream); font-family: var(--font-sans); overflow-x: hidden; }
+
+@layer components {
+.h2 {
+  @apply font-display text-[2.1rem] font-extrabold leading-[1.08] tracking-tight text-violet-950 sm:text-5xl;
+}
+
+/* Buttons */
+.btn-primary, .btn-wa, .btn-call, .btn-gold, .btn-ghost-light {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-bold transition duration-200 active:scale-[.97];
+}
+.btn-primary { @apply bg-violet-700 text-sm text-white shadow-lg shadow-violet-700/25 hover:bg-violet-800 hover:shadow-violet-700/40; }
+.btn-wa { @apply bg-[#25D366] px-7 py-4 text-white shadow-[0_14px_30px_-10px_rgba(37,211,102,.75)] hover:-translate-y-0.5 hover:bg-[#1ebe5b]; }
+.btn-call { @apply bg-violet-100 py-2.5 text-sm text-violet-900 ring-1 ring-violet-200 hover:bg-violet-200; }
+.btn-gold { @apply bg-gold-400 px-7 py-4 text-violet-950 shadow-[0_14px_30px_-10px_rgba(248,198,61,.8)] hover:-translate-y-0.5 hover:bg-gold-300; }
+.btn-ghost-light { @apply bg-white/10 px-7 py-4 text-white ring-1 ring-white/25 backdrop-blur hover:bg-white/20; }
+
+/* Form */
+.label { @apply text-sm font-semibold text-ink/80; }
+.field {
+  @apply mt-1.5 block w-full rounded-xl border-0 bg-cream px-4 py-3 text-base text-ink ring-1 ring-violet-200 outline-none transition placeholder:text-ink/35 focus:bg-white focus:ring-2 focus:ring-violet-600;
+}
+
+}
+
+/* Hero background */
+.hero-bg {
+  background:
+    radial-gradient(60% 70% at 85% 30%, rgba(248, 198, 61, .22), transparent 60%),
+    radial-gradient(50% 60% at 10% 90%, rgba(56, 189, 248, .18), transparent 60%),
+    radial-gradient(80% 80% at 50% 0%, #6a2fb6 0%, transparent 70%),
+    linear-gradient(160deg, #3b1673 0%, #230d45 70%);
+}
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,.09) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+.dots { background-image: radial-gradient(rgba(98,41,168,.16) 2px, transparent 2px); background-size: 20px 20px; }
+.dots-light { background-image: radial-gradient(rgba(255,255,255,.16) 2px, transparent 2px); background-size: 22px 22px; }
+
+@layer components {
+/* Floating chips around the bottle */
+.chip {
+  @apply absolute flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-xs font-bold text-violet-950 shadow-xl shadow-violet-950/30 sm:text-sm;
+  animation: bob 6s ease-in-out infinite;
+}
+
+}
+
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes floaty { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-16px) rotate(2deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+.float { animation: floaty 7s ease-in-out infinite; }
+.spin-slow { animation: spin 60s linear infinite; }
+.marquee { animation: marquee 40s linear infinite; }
+
+/* Scroll reveal */
+[data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+[data-reveal].is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  [data-reveal] { opacity: 1; transform: none; }
+}
