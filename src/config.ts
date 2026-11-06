@@ -7,13 +7,13 @@
  */
 export const SITE = {
   /** Phone number for the "Call" buttons, with country code. Example: "+225 07 00 00 00 00" */
-  phoneDisplay: '+225 07 00 00 00 00',
+  phoneDisplay: '+225 01 02 25 84 84',
 
   /** Same number, digits only with country code, no "+" or spaces. Used for tel: links. */
-  phoneDigits: '2250700000000',
+  phoneDigits: '2250102258484',
 
   /** WhatsApp number, digits only with country code, no "+". Often the same as the phone. */
-  whatsapp: '2250700000000',
+  whatsapp: '2250102258484',
 
   /** Where you deliver (shown on the site). */
   deliveryArea: { fr: "partout en Côte d'Ivoire", en: 'across Côte d’Ivoire' },
